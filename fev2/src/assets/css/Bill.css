@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  background-color: #ffe8d2;
+  font-family: "Montserrat", sans-serif;
+}
+
+.card {
+  border: none;
+}
+
+.logo {
+  background-color: #eeeeeea8;
+}
+.logo-image {
+  background: #333;
+  padding: 20px 20px;
+}
+
+.info-Bill {
+  display: flex;
+}
+
+.info-Bill .office {
+  border: 2px solid #ffddbd;
+  margin-left: 70px;
+  padding-top: 10px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+}
+
+.info-Bill .office p {
+  max-width: 500px;
+  margin-left: 20px;
+}
+
+.totals tr td {
+  font-size: 13px;
+}
+
+.Bill-info p {
+  width: 200px;
+}
+
+.footer {
+  background-color: #eeeeeea8;
+}
+
+.footer span {
+  font-size: 12px;
+}
+
+.product-qty span {
+  font-size: 12px;
+  color: #dedbdb;
+}
+.py-2 span {
+  font-size: 15px;
+}

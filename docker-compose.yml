@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  db_banruou:
+    image: mysql:8.0
+    container_name: db_banruou
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: banruou
+    ports:
+      - "3307:3306"  # Sử dụng cổng 3307 bên ngoài container
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - springapimysql-net
+
+  be_banruou:
+    build:
+      context: ./be
+      dockerfile: Dockerfile
+    container_name: be_banruou
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db_banruou:3306/banruou?zeroDateTimeBehavior=convertToNull
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      - db_banruou
+    networks:
+      - springapimysql-net
+
+  fe_banruou:
+    build:
+      context: ./fev2
+      dockerfile: Dockerfile
+    container_name: fe_banruou
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - be_banruou
+    networks:
+      - springapimysql-net
+
+networks:
+  springapimysql-net:
+    driver: bridge
+
+volumes:
+  mysql-data:
